@@ -1,0 +1,45 @@
+abstract class Metal {
+abstract int getEndurance();
+}
+class Steel extends Metal {
+@Override
+int getEndurance() {
+return 50;
+}
+}
+class Copper extends Metal {
+@Override
+int getEndurance() {
+return 20;
+}
+}
+
+class Iron extends Metal {
+@Override
+int getEndurance() {
+return 30;
+}
+}
+class Plastic {
+// some code
+}
+class Sword {
+private M material;
+
+java
+Copy code
+public Sword(M material) {
+    if (material instanceof Plastic) {
+        throw new IllegalArgumentException("Plastic is not a valid material for a sword");
+    }
+    this.material = material;
+}
+
+public boolean isEnduranceEnough() {
+    return material.getEndurance() > 49;
+}
+}
+public static void main(String[] args) {
+Sword steelSword = new Sword<>(new Steel());
+System.out.println(steelSword.isEnduranceEnough());
+}
