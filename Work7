@@ -1,0 +1,67 @@
+public class Address {
+private String city;
+private String region;
+public Address(String city, String region) {
+    this.city = city;
+    this.region = region;
+}
+
+public String getCity() {
+    return city;
+}
+
+public String getRegion() {
+    return region;
+}
+}
+
+public class Student {
+private String name;
+private Optional address;
+public Student(String name, Optional<Address> address) {
+    this.name = name;
+    this.address = address;
+}
+public Student(String name) {
+this.name = name;
+this.address = Optional.empty();
+}
+public String getName() {
+    return name;
+}
+
+public Optional<Address> getAddress() {
+    return address;
+}
+}
+
+public class Main {
+public static void printStudentInfo(Student student) {
+if (student.getAddress().isPresent()) {
+System.out.println("Name: " + student.getName() + ", Address: " + student.getAddress().get().getCity() + ", " + student.getAddress().get().getRegion());
+} else {
+System.out.println("Name: " + student.getName());
+}
+}
+public static void main(String[] args) {
+    Student student1 = new Student("John");
+    Student student2 = new Student("Mary", Optional.of(new Address("New York", "NY")));
+    Student student3 = new Student("Tom", Optional.of(new Address("Los Angeles", "CA")));
+
+    printStudentInfo(student1);
+    printStudentInfo(student2);
+    printStudentInfo(student3);
+}
+}
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+public static void main(String[] args) {
+List words = Arrays.asList("This", "is", "a", "list", "of", "words");
+    String sentence = words.stream().reduce("", (s1, s2) -> s1 + " " + s2);
+    System.out.println("Words: " + words);
+    System.out.println("Sentence: " + sentence.trim());
+}
+}
